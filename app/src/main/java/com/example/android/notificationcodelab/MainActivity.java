@@ -72,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendNotification() {
+        Intent updateIntent = new Intent(ACTION_UPDATE_NOTIFICATION);
+        PendingIntent updatePendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, updateIntent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
-
+        notifyBuilder.addAction(R.drawable.ic_update, "Update Notification", updatePendingIntent);
 
         mNotificationManager.notify(NOTIFICATION_ID, notifyBuilder.build());
 
